@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { api } from './services/api';
-import { Profile, SkillCategory, Experience, Project } from './types';
+import { Profile, SkillCategory, Experience, Project, Achievement } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { SkillsTerminal } from './components/SkillsTerminal';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { ProjectsShowcase } from './components/ProjectsShowcase';
+import { MilestonesSection } from './components/MilestonesSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -20,6 +21,7 @@ export const App: React.FC = () => {
   }>({ categories: [], terminalSkills: {} });
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [milestones, setMilestones] = useState<Achievement[]>([]);
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,17 +33,19 @@ export const App: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        const [profileRes, skillsRes, expRes, projRes] = await Promise.all([
+        const [profileRes, skillsRes, expRes, projRes, milestonesRes] = await Promise.all([
           api.getProfile().catch(() => null),
           api.getSkills().catch(() => ({ categories: [], terminalSkills: {} })),
           api.getExperience().catch(() => []),
           api.getProjects().catch(() => []),
+          api.getAchievements().catch(() => []),
         ]);
 
         if (profileRes) setProfile(profileRes);
         if (skillsRes) setSkillsData(skillsRes);
         if (expRes) setExperiences(expRes);
         if (projRes) setProjects(projRes);
+        if (milestonesRes) setMilestones(milestonesRes);
 
         // Dynamic Document Title
         if (profileRes?.name) {
@@ -108,6 +112,7 @@ export const App: React.FC = () => {
     hasSkills: skillsData.categories.length > 0,
     hasExperience: experiences.length > 0,
     hasProjects: projects.length > 0,
+    hasMilestones: milestones.length > 0,
     hasContact: !!profile?.email,
   };
 
@@ -146,7 +151,12 @@ export const App: React.FC = () => {
           <ProjectsShowcase projects={projects} />
         )}
 
-        {/* 6. Contact Transmission */}
+        {/* 6. Milestones & Accreditations (Honors) */}
+        {availableSections.hasMilestones && (
+          <MilestonesSection milestones={milestones} />
+        )}
+
+        {/* 7. Contact Transmission */}
         {availableSections.hasContact && <ContactSection profile={profile} />}
       </main>
 

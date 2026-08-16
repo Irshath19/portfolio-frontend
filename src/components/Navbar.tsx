@@ -15,6 +15,7 @@ interface NavbarProps {
     hasSkills: boolean;
     hasExperience: boolean;
     hasProjects: boolean;
+    hasMilestones?: boolean;
     hasContact: boolean;
   };
 }
@@ -36,6 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, profile, availabl
     ...(availableSections.hasSkills ? [{ id: 'skills', label: 'SKILLS' }] : []),
     ...(availableSections.hasExperience ? [{ id: 'experience', label: 'EXPERIENCE' }] : []),
     ...(availableSections.hasProjects ? [{ id: 'projects', label: 'PROJECTS' }] : []),
+    ...(availableSections.hasMilestones ? [{ id: 'milestones', label: 'MILESTONES' }] : []),
     ...(availableSections.hasContact ? [{ id: 'contact', label: 'CONTACT' }] : []),
   ];
 
