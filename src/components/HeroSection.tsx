@@ -176,32 +176,68 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </motion.div>
         </div>
 
-        {/* Right Photo Column - Clean & Premium (No fake status badges) */}
+        {/* Right Photo Column - Ultra Pro-Level Engineering Frame */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, scale: 0.92, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <div className="relative group w-72 sm:w-80 lg:w-96 aspect-square">
-            {/* Ambient Lighting Behind Frame */}
-            <div className="absolute -inset-2 bg-gradient-to-tr from-accent/20 to-blue-600/10 rounded-3xl blur-2xl opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+          <div className="relative group w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
             
-            {/* Image Container Card */}
-            <div className="relative w-full h-full rounded-2xl bg-[#0F0F0F] border border-white/15 overflow-hidden p-2">
-              <div className="w-full h-full rounded-xl overflow-hidden relative bg-[#141414]">
-                <img
-                  src={profile.avatarUrl}
-                  alt={profile.name}
-                  className="w-full h-full object-cover grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+            {/* Multi-layered Ambient Glow with Pulse */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-accent/30 via-accent-violet/20 to-blue-500/20 rounded-[2.5rem] blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-accent/40 via-accent-violet/30 to-accent/40 rounded-[2.2rem] blur-md opacity-25 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
+
+            {/* Pro Floating Glassmorphic Chassis */}
+            <div className="relative rounded-[2rem] bg-gradient-to-b from-white/15 via-white/5 to-white/[0.02] p-[1.5px] shadow-2xl shadow-black/80 transition-transform duration-500 group-hover:-translate-y-1">
+              <div className="relative rounded-[1.95rem] bg-[#070A10]/95 backdrop-blur-2xl overflow-hidden p-3.5 border border-white/5">
+                
+                {/* Inner Bezel Frame */}
+                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#0B111B] border border-white/10 shadow-inner">
+                  
+                  {/* High-Definition Natural Portrait */}
+                  <img
+                    src={profile.avatarUrl}
+                    alt={profile.name}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-100 contrast-[1.03]"
+                  />
+                  
+                  {/* Subtle Light Vignette Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070B]/85 via-transparent to-black/10 pointer-events-none" />
+
+                  {/* Top-Right Active Signal Badge */}
+                  <div className="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-[#05070B]/80 backdrop-blur-md border border-white/15 shadow-lg flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#22c55e]" />
+                    <span className="text-[10px] font-mono font-bold tracking-wider text-white">ONLINE</span>
+                  </div>
+
+                  {/* Bottom Verified Identity Strip */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#080C13]/90 backdrop-blur-xl border border-white/10 flex items-center justify-between text-xs font-mono shadow-2xl">
+                    <div className="space-y-0.5">
+                      <div className="text-[10px] font-bold tracking-widest text-accent uppercase">{profile.handle || 'DEV.GARAGE'}</div>
+                      <div className="text-white font-sans font-bold text-xs truncate max-w-[170px]">{profile.name}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-[9px] text-text-muted">SYSTEM ID</div>
+                      <div className="text-[11px] font-mono text-emerald-400 font-bold">VERIFIED</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Precision Engineering Sub-Bar */}
+                <div className="mt-3 px-2 flex items-center justify-between text-[10px] font-mono text-text-muted">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-accent" />
+                    <span>PORTFOLIO NODE // 01</span>
+                  </div>
+                  <span className="text-text-muted/70 tracking-widest">EST. 2026</span>
+                </div>
+
               </div>
             </div>
 
-            {/* Corner Decorative Markers */}
-            <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-accent" />
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-accent" />
           </div>
         </motion.div>
 

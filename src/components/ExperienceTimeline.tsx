@@ -61,12 +61,10 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experien
                 >
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-accent/10 border border-accent/30 text-accent-light">
-                        {exp.logType || 'STABLE_RELEASE'}
-                      </span>
                       {exp.isCurrent && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                          CURRENT_DEPLOYMENT
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>CURRENT</span>
                         </span>
                       )}
                       <span className="text-xs font-mono text-text-muted flex items-center gap-1.5">
