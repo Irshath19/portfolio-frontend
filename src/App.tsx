@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { api } from './services/api';
-import { Profile, SkillCategory, Experience, Project, Achievement } from './types';
+import { analytics } from './services/analytics';
+import { Profile, SkillCategory, Experience, Project, Achievement, Blog } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
@@ -8,6 +9,7 @@ import { SkillsTerminal } from './components/SkillsTerminal';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { ProjectsShowcase } from './components/ProjectsShowcase';
 import { MilestonesSection } from './components/MilestonesSection';
+import { GarageLogSection } from './components/GarageLogSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -22,6 +24,7 @@ export const App: React.FC = () => {
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [milestones, setMilestones] = useState<Achievement[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,12 +36,13 @@ export const App: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        const [profileRes, skillsRes, expRes, projRes, milestonesRes] = await Promise.all([
+        const [profileRes, skillsRes, expRes, projRes, milestonesRes, blogsRes] = await Promise.all([
           api.getProfile().catch(() => null),
           api.getSkills().catch(() => ({ categories: [], terminalSkills: {} })),
           api.getExperience().catch(() => []),
           api.getProjects().catch(() => []),
           api.getAchievements().catch(() => []),
+          api.getBlogs().catch(() => []),
         ]);
 
         if (profileRes) setProfile(profileRes);
@@ -46,6 +50,7 @@ export const App: React.FC = () => {
         if (expRes) setExperiences(expRes);
         if (projRes) setProjects(projRes);
         if (milestonesRes) setMilestones(milestonesRes);
+        if (blogsRes) setBlogs(blogsRes);
 
         // Dynamic Document Title
         if (profileRes?.name) {
@@ -60,6 +65,8 @@ export const App: React.FC = () => {
     };
 
     fetchData();
+    // Initialize anonymous visitor analytics session
+    analytics.initSession();
   }, []);
 
   // Track active section on scroll
@@ -69,6 +76,7 @@ export const App: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
+            analytics.trackPageView(entry.target.id);
           }
         });
       },
@@ -113,6 +121,7 @@ export const App: React.FC = () => {
     hasExperience: experiences.length > 0,
     hasProjects: projects.length > 0,
     hasMilestones: milestones.length > 0,
+    hasBlogs: blogs.some((b) => b.isPublished !== false),
     hasContact: !!profile?.email,
   };
 
@@ -156,7 +165,12 @@ export const App: React.FC = () => {
           <MilestonesSection milestones={milestones} />
         )}
 
-        {/* 7. Contact Transmission */}
+        {/* 7. Garage Log (Technical Articles) */}
+        {availableSections.hasBlogs && (
+          <GarageLogSection blogs={blogs} />
+        )}
+
+        {/* 8. Contact Transmission */}
         {availableSections.hasContact && <ContactSection profile={profile} />}
       </main>
 

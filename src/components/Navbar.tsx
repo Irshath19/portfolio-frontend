@@ -16,6 +16,7 @@ interface NavbarProps {
     hasExperience: boolean;
     hasProjects: boolean;
     hasMilestones?: boolean;
+    hasBlogs?: boolean;
     hasContact: boolean;
   };
 }
@@ -34,10 +35,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, profile, availabl
 
   const navItems: NavItem[] = [
     ...(availableSections.hasAbout ? [{ id: 'about', label: 'ABOUT' }] : []),
-    ...(availableSections.hasSkills ? [{ id: 'skills', label: 'SKILLS' }] : []),
-    ...(availableSections.hasExperience ? [{ id: 'experience', label: 'EXPERIENCE' }] : []),
-    ...(availableSections.hasProjects ? [{ id: 'projects', label: 'PROJECTS' }] : []),
+    ...(availableSections.hasSkills ? [{ id: 'skills', label: 'TOOLBOX' }] : []),
+    ...(availableSections.hasExperience ? [{ id: 'experience', label: 'JOURNEY' }] : []),
+    ...(availableSections.hasProjects ? [{ id: 'projects', label: 'WORKSHOP' }] : []),
     ...(availableSections.hasMilestones ? [{ id: 'milestones', label: 'MILESTONES' }] : []),
+    ...(availableSections.hasBlogs ? [{ id: 'garage-log', label: 'GARAGE LOGS' }] : []),
     ...(availableSections.hasContact ? [{ id: 'contact', label: 'CONTACT' }] : []),
   ];
 

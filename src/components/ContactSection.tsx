@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Github, Linkedin, Twitter } from 'lucide-react';
 import { Profile } from '../types';
 import { api } from '../services/api';
+import { analytics } from '../services/analytics';
 
 interface ContactSectionProps {
   profile: Profile | null;
@@ -29,6 +30,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
 
     try {
       await api.sendMessage(formData);
+      analytics.trackEvent('contact_submit', '#contact', { subject: formData.subject || 'Direct inquiry' });
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err: any) {

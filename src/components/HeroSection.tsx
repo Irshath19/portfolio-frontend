@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
 import { Profile } from '../types';
+import { analytics } from '../services/analytics';
 
 interface HeroSectionProps {
   profile: Profile | null;
@@ -144,6 +145,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   href={profile.github}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => analytics.trackEvent('github_click', '#hero', { url: profile.github })}
                   className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-text-secondary hover:text-white transition-colors"
                   aria-label="GitHub"
                 >
@@ -155,6 +157,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   href={profile.linkedin}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => analytics.trackEvent('linkedin_click', '#hero', { url: profile.linkedin })}
                   className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-text-secondary hover:text-accent-light transition-colors"
                   aria-label="LinkedIn"
                 >
@@ -166,6 +169,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   href={profile.twitter}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => analytics.trackEvent('twitter_click', '#hero', { url: profile.twitter })}
                   className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-text-secondary hover:text-accent-light transition-colors"
                   aria-label="Twitter"
                 >

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowUpRight, Sparkles } from 'lucide-react';
 import { Project } from '../types';
 import { ProjectCaseStudyModal } from './ProjectCaseStudyModal';
+import { analytics } from '../services/analytics';
 
 interface ProjectsShowcaseProps {
   projects: Project[];
@@ -11,6 +12,11 @@ interface ProjectsShowcaseProps {
 export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ projects }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+
+  const handleOpenCaseStudy = (proj: Project) => {
+    analytics.trackProjectView(proj.id, proj.title);
+    setActiveModalProject(proj);
+  };
 
   if (!projects || projects.length === 0) {
     return null;
@@ -121,7 +127,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ projects }) 
 
                 <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
                   <button
-                    onClick={() => setActiveModalProject(featuredProject)}
+                    onClick={() => handleOpenCaseStudy(featuredProject)}
                     className="px-5 py-2.5 rounded-xl font-mono text-xs font-bold bg-accent text-white hover:bg-accent-dark transition-all duration-200 shadow-md shadow-accent/20 flex items-center gap-2 cursor-pointer"
                   >
                     <span>[ INSPECT ARCHITECTURE ]</span>
@@ -218,7 +224,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ projects }) 
 
               <div className="p-6 pt-0 flex items-center justify-between border-t border-white/5 mt-4">
                 <button
-                  onClick={() => setActiveModalProject(project)}
+                  onClick={() => handleOpenCaseStudy(project)}
                   className="text-xs font-mono text-accent hover:text-accent-light font-semibold flex items-center gap-1 cursor-pointer"
                 >
                   <span>CASE STUDY</span>
