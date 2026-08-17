@@ -17,11 +17,11 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experien
   }
 
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-[#050505] border-t border-white/5">
+    <section id="experience" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative bg-[#050505] border-t border-white/5 w-full max-w-full">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 lg:mb-16 pb-4 sm:pb-6 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono text-accent mb-2">
               <span>03</span>
@@ -32,7 +32,7 @@ export const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({ experien
               Engineering Track Record
             </h2>
           </div>
-          <div className="mt-4 md:mt-0 text-sm font-mono text-text-secondary">
+          <div className="mt-3 md:mt-0 text-xs sm:text-sm font-mono text-text-secondary">
             // Chronological systems architecture, engineering roles, and scale milestones.
           </div>
         </div>

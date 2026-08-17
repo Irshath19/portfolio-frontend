@@ -48,11 +48,11 @@ export const MilestonesSection: React.FC<MilestonesSectionProps> = ({ milestones
   };
 
   return (
-    <section id="milestones" className="py-24 px-6 sm:px-12 max-w-7xl mx-auto border-t border-white/5 relative">
+    <section id="milestones" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5 relative w-full max-w-full">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="space-y-12 relative z-10">
+      <div className="space-y-8 sm:space-y-12 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

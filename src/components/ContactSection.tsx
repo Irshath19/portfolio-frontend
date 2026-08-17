@@ -42,11 +42,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-[#0A0A0A] border-t border-white/5">
+    <section id="contact" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative bg-[#0A0A0A] border-t border-white/5 w-full max-w-full">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 lg:mb-16 pb-4 sm:pb-6 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono text-accent mb-2">
               <span>05</span>
@@ -57,12 +57,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               Initiate Transmission
             </h2>
           </div>
-          <div className="mt-4 md:mt-0 text-sm font-mono text-text-secondary">
+          <div className="mt-3 md:mt-0 text-xs sm:text-sm font-mono text-text-secondary">
             // Direct inquiry terminal for architectural consulting, engineering roles & builds.
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
           {/* Coordinates & Links Column */}
           <div className="lg:col-span-5 space-y-8">

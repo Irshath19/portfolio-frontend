@@ -40,13 +40,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   }
 
   return (
-    <section id="hero" className="min-h-screen relative flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="hero" className="min-h-screen relative flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden w-full max-w-full">
       
       {/* Background Subtle Grid & Ambient Glow */}
       <div className="absolute inset-0 engineering-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-accent/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none overflow-hidden" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
         
         {/* Left Content Column */}
         <div className="lg:col-span-7 space-y-6 text-left">
@@ -56,12 +56,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#141414] border border-white/10 text-xs font-mono text-text-secondary"
+            className="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-[#141414] border border-white/10 text-[11px] sm:text-xs font-mono text-text-secondary max-w-full"
           >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse flex-shrink-0" />
             <span className="text-text-primary font-bold tracking-wider">{profile.handle || 'DEV.GARAGE'}</span>
-            <span className="text-text-muted">•</span>
-            <span className="text-accent-light tracking-wide uppercase">
+            <span className="text-text-muted hidden sm:inline">•</span>
+            <span className="text-accent-light tracking-wide uppercase text-[10px] sm:text-xs">
               {profile.tagline || 'Build. Break. Learn. Ship.'}
             </span>
           </motion.div>
@@ -73,14 +73,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-2"
           >
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white font-sans leading-[1.08]">
+            <h1 className="text-3xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white font-sans leading-[1.1] break-words">
               {profile.name}
             </h1>
             
             {/* Dynamic Rotating Designation */}
-            <div className="h-10 sm:h-12 flex items-center">
-              <span className="text-xl sm:text-2xl lg:text-3xl font-mono text-accent-light font-medium flex items-center gap-2">
-                <span className="text-text-muted">&gt;</span> {roles[roleIndex]}
+            <div className="min-h-[2rem] sm:min-h-[2.5rem] flex items-center">
+              <span className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-mono text-accent-light font-medium flex items-center gap-2 max-w-full break-words">
+                <span className="text-text-muted flex-shrink-0">&gt;</span>
+                <span className="break-words">{roles[roleIndex]}</span>
               </span>
             </div>
           </motion.div>
@@ -90,7 +91,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed font-sans"
+            className="text-sm sm:text-lg text-text-secondary max-w-2xl leading-relaxed font-sans"
           >
             {profile.shortBio}
           </motion.p>
@@ -100,19 +101,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-3 gap-4 py-3 max-w-lg border-y border-white/10"
+            className="grid grid-cols-3 gap-2 sm:gap-4 py-3 max-w-lg border-y border-white/10 w-full"
           >
             <div>
-              <div className="text-2xl font-bold text-white font-mono">{profile.yearsExperience || '03+'}</div>
-              <div className="text-[11px] font-mono text-text-muted uppercase tracking-wider">Experience</div>
+              <div className="text-xl sm:text-2xl font-bold text-white font-mono">{profile.yearsExperience || '01+'}</div>
+              <div className="text-[10px] sm:text-[11px] font-mono text-text-muted uppercase tracking-wider">Experience</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white font-mono">{profile.projectsCount || '20+'}</div>
-              <div className="text-[11px] font-mono text-text-muted uppercase tracking-wider">Shipped</div>
+              <div className="text-xl sm:text-2xl font-bold text-white font-mono">{profile.projectsCount || '12+'}</div>
+              <div className="text-[10px] sm:text-[11px] font-mono text-text-muted uppercase tracking-wider">Shipped</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-accent font-mono">{profile.codeQualityScore || '99.9%'}</div>
-              <div className="text-[11px] font-mono text-text-muted uppercase tracking-wider">Reliability</div>
+              <div className="text-xl sm:text-2xl font-bold text-accent font-mono">{profile.codeQualityScore || '99.9%'}</div>
+              <div className="text-[10px] sm:text-[11px] font-mono text-text-muted uppercase tracking-wider">Reliability</div>
             </div>
           </motion.div>
 
@@ -121,11 +122,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center gap-4 pt-2"
+            className="flex flex-wrap items-center gap-3 pt-2"
           >
             <button
               onClick={() => scrollTo('projects')}
-              className="px-6 py-3.5 rounded-xl font-mono text-xs font-bold bg-accent text-white hover:bg-accent-dark transition-all duration-200 shadow-xl shadow-accent/25 border border-accent/40 flex items-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-5 sm:px-6 py-3.5 rounded-xl font-mono text-xs font-bold bg-accent text-white hover:bg-accent-dark transition-all duration-200 shadow-xl shadow-accent/25 border border-accent/40 flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>[ EXPLORE WORKSHOP ]</span>
               <ArrowDown className="w-4 h-4" />
@@ -133,13 +134,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
             <button
               onClick={() => scrollTo('contact')}
-              className="px-6 py-3.5 rounded-xl font-mono text-xs font-semibold bg-[#141414] text-text-primary hover:bg-[#1A1A1A] hover:text-white transition-all duration-200 border border-white/10 cursor-pointer"
+              className="w-full sm:w-auto px-5 sm:px-6 py-3.5 rounded-xl font-mono text-xs font-semibold bg-[#141414] text-text-primary hover:bg-[#1A1A1A] hover:text-white transition-all duration-200 border border-white/10 flex items-center justify-center cursor-pointer"
             >
               [ CONTACT / INITIATE ]
             </button>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-2 pl-2">
+            <div className="flex items-center gap-2 pt-2 sm:pt-0 sm:pl-2">
               {profile.github && (
                 <a
                   href={profile.github}
@@ -180,14 +181,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </motion.div>
         </div>
 
-        {/* Right Photo Column - Ultra Pro-Level Engineering Frame */}
+        {/* Right Photo Column */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex justify-center lg:justify-end"
+          className="lg:col-span-5 flex justify-center lg:justify-end w-full"
         >
-          <div className="relative group w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
+          <div className="relative group w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[420px] mx-auto">
             
             {/* Multi-layered Ambient Glow with Pulse */}
             <div className="absolute -inset-4 bg-gradient-to-tr from-accent/30 via-accent-violet/20 to-blue-500/20 rounded-[2.5rem] blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />

@@ -69,11 +69,11 @@ function getSkills() {
   })).filter(cat => cat.skills.length > 0);
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-[#0A0A0A] border-t border-white/5">
+    <section id="skills" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 relative bg-[#0A0A0A] border-t border-white/5 w-full max-w-full">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-white/10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 pb-4 sm:pb-6 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono text-accent mb-2">
               <span>02</span>
@@ -84,32 +84,32 @@ function getSkills() {
               Technical Arsenal & Skills
             </h2>
           </div>
-          <div className="mt-4 md:mt-0 text-sm font-mono text-text-secondary">
+          <div className="mt-3 md:mt-0 text-xs sm:text-sm font-mono text-text-secondary">
             // Full stack toolchain, distributed systems runtime, and ML engineering.
           </div>
         </div>
 
         {/* Terminal / Code IDE Window */}
-        <div className="rounded-3xl bg-[#0F0F0F] border border-white/15 overflow-hidden shadow-2xl">
+        <div className="rounded-3xl bg-[#0F0F0F] border border-white/15 overflow-hidden shadow-2xl w-full max-w-full">
           
           {/* Top Window Bar */}
-          <div className="px-6 py-4 bg-[#141414] border-b border-white/10 flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#141414] border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 overflow-hidden">
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
               </div>
-              <span className="text-xs font-mono text-text-muted pl-2">
+              <span className="text-[11px] font-mono text-text-muted truncate">
                 workspace/toolbox/getSkills.ts
               </span>
             </div>
 
             {/* Tab Switches & Actions */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 flex-wrap">
               <button
                 onClick={() => setActiveTab('editor')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono transition-colors cursor-pointer ${
                   activeTab === 'editor' ? 'bg-white/10 text-white font-semibold' : 'text-text-muted hover:text-white'
                 }`}
               >
@@ -120,7 +120,7 @@ function getSkills() {
                   setActiveTab('terminal');
                   if (terminalOutput.length === 0) runCommand('all');
                 }}
-                className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
+                className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono transition-colors cursor-pointer ${
                   activeTab === 'terminal' ? 'bg-accent/20 text-accent-light font-semibold border border-accent/30' : 'text-text-muted hover:text-white'
                 }`}
               >
@@ -129,29 +129,29 @@ function getSkills() {
 
               <button
                 onClick={copyCode}
-                className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-text-secondary hover:text-white transition-colors ml-2 cursor-pointer"
+                className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-text-secondary hover:text-white transition-colors cursor-pointer"
                 title="Copy manifest code"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
 
               <button
                 onClick={() => runCommand(selectedCategory)}
                 disabled={isRunningCommand}
-                className="px-3 py-1.5 rounded-lg bg-accent text-white hover:bg-accent-dark text-xs font-mono font-bold flex items-center gap-1.5 transition-all shadow-md shadow-accent/20 cursor-pointer"
+                className="px-2.5 sm:px-3 py-1.5 rounded-lg bg-accent text-white hover:bg-accent-dark text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5 transition-all shadow-md shadow-accent/20 cursor-pointer"
               >
-                <Play className="w-3.5 h-3.5 fill-current" />
+                <Play className="w-3 h-3 fill-current" />
                 <span>{isRunningCommand ? 'RUNNING...' : 'EXECUTE'}</span>
               </button>
             </div>
           </div>
 
           {/* Body Content */}
-          <div className="p-6 sm:p-8">
+          <div className="p-4 sm:p-6 lg:p-8 overflow-hidden">
             
             {/* Category Filter & Search Bar */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/5">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 <button
                   onClick={() => setSelectedCategory('all')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors cursor-pointer ${
@@ -241,13 +241,13 @@ function getSkills() {
               </div>
             ) : (
               /* Terminal Output View */
-              <div className="pt-6 min-h-[300px] bg-[#050505] p-6 rounded-2xl border border-white/10 font-mono text-xs text-text-secondary space-y-2">
+              <div className="pt-6 min-h-[300px] bg-[#050505] p-4 sm:p-6 rounded-2xl border border-white/10 font-mono text-xs text-text-secondary space-y-2 overflow-x-auto w-full max-w-full">
                 <div className="text-accent-light pb-2 border-b border-white/5 flex items-center gap-2">
-                  <TerminalIcon className="w-4 h-4" />
-                  <span>INTERACTIVE getSkills() SESSION</span>
+                  <TerminalIcon className="w-4 h-4 flex-shrink-0" />
+                  <span className="truncate">INTERACTIVE getSkills() SESSION</span>
                 </div>
                 {terminalOutput.map((line, idx) => (
-                  <div key={idx} className="leading-relaxed">
+                  <div key={idx} className="leading-relaxed whitespace-pre-wrap break-words">
                     {line.startsWith('>') ? (
                       <span className="text-accent font-bold">{line}</span>
                     ) : line.startsWith('✓') ? (
